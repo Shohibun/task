@@ -68,7 +68,7 @@ export default function Login() {
           </div>
 
           <Link href="/layouts/register">
-            <h5 className="text-xs text-gray-500 mt-2 text-center cursor-pointer hover:text-blue-500">
+            <h5 className="text-xs text-gray-500 mt-2 text-center cursor-pointer font-bold hover:text-blue-500">
               Registration ?
             </h5>
           </Link>
