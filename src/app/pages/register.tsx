@@ -1,25 +1,27 @@
 "use client";
 
-import Image from "next/image";
-import jmb from "../../public/images/jmb.png";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
-export default function Login() {
+export default function RegisterMain() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (username === "shohibun" && password === "shohibun123") {
+    if (
+      username === "shohibun" &&
+      email === "shohibun@gmail.com" &&
+      password === "shohibun123"
+    ) {
       localStorage.setItem("IsLoggedIn", "true");
-      router.push("/layouts/home");
+      router.push("/");
     } else {
       alert("Fail Login!");
     }
@@ -27,19 +29,9 @@ export default function Login() {
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="w-8/12 mb-10">
-        <div className="mt-10 mb-5">
-          <Image
-            src={jmb}
-            width={700}
-            height={700}
-            className="mx-auto"
-            alt="jumbutron"
-          />
-        </div>
-
+      <div className="w-8/12 mt-36">
         <h1 className="text-4xl text-green-600 font-bold text-center">
-          Welcome Back!
+          Registration
         </h1>
 
         <form onSubmit={handleLogin} className="mt-12">
@@ -56,6 +48,18 @@ export default function Login() {
           </div>
 
           <div className="grid mx-auto w-full max-w-sm items-center gap-3 mt-3">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              type="email"
+              id="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              suppressHydrationWarning // Untuk menghilangkan error ketika melakukan render
+            />
+          </div>
+
+          <div className="grid mx-auto w-full max-w-sm items-center gap-3 mt-3">
             <Label htmlFor="password">Password</Label>
             <Input
               type="password"
@@ -66,12 +70,6 @@ export default function Login() {
               suppressHydrationWarning
             />
           </div>
-
-          <Link href="/layouts/register">
-            <h5 className="text-xs text-gray-500 mt-2 text-center cursor-pointer hover:text-blue-500">
-              Registration ?
-            </h5>
-          </Link>
 
           <div className="w-full flex justify-center">
             <Button
